@@ -263,12 +263,12 @@ app_flask = Flask(__name__)
 def home():
     return "Bot is running"
 
-def run_bot():
-    main()
+def run_flask():
+    app_flask.run(host='0.0.0.0', port=int(os.environ.get("PORT", 10000)))
 
 if __name__ == "__main__":
-    # lance le bot dans un thread
-    threading.Thread(target=run_bot).start()
+    # Run Flask in a background thread for Render
+    threading.Thread(target=run_flask).start()
 
-    # lance le serveur web pour Render
-    app_flask.run(host='0.0.0.0', port=int(os.environ.get("PORT", 10000)))
+    # Run the Telegram bot in the main thread
+    main()
