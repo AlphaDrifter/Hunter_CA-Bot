@@ -196,12 +196,14 @@ async def on_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             
         )
         
-   pair = None
-     dex_link = dex_url
+        pair = None
+        dex_link = dex_url
 
-    if pairs and len(pairs) > 0:
-        pair = pairs[0]
-        dex_link = pair.get("url") or dex_url
+       if 'pairs' in locals() and pairs and len(pairs) > 0:
+           pair = pairs[0]
+           dex_link = pair.get("url") or dex_url
+
+
 
 
     keyboard = InlineKeyboardMarkup([
